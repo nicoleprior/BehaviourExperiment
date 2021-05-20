@@ -103,7 +103,7 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
 
                 amplitude = Mathf.Clamp01(amplitude / audioSample.Length * AmplituteMultiplier);
                 
-                headMesh.SetBlendShapeWeight(MouthOpenBlendshapeIndex, amplitude);
+                headMesh.SetBlendShapeWeight(MouthOpenBlendshapeIndex, amplitude * 100f);
             }
         }
 

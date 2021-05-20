@@ -61,8 +61,8 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
             float horizontal = Random.Range(-HorizontalMargin, HorizontalMargin);
 
             Quaternion rotation = isFullbody ? 
-                Quaternion.Euler(horizontal, 0 + vertical, 0) : 
-                Quaternion.Euler(horizontal -90, 0, 180 + vertical);
+                Quaternion.Euler(horizontal, vertical, 0) : 
+                Quaternion.Euler(horizontal - 90, 0, vertical + 180);
 
             leftEyeBone.localRotation = rotation;
             rightEyeBone.localRotation = rotation;
@@ -70,8 +70,8 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
 
         private IEnumerator BlinkEyes()
         {
-            headMesh.SetBlendShapeWeight(eyeBlinkLeftBlendshapeIndex, 0.7f);
-            headMesh.SetBlendShapeWeight(eyeBlinkRightBlendshapeIndex, 0.7f);
+            headMesh.SetBlendShapeWeight(eyeBlinkLeftBlendshapeIndex, 70f);
+            headMesh.SetBlendShapeWeight(eyeBlinkRightBlendshapeIndex, 70f);
 
             yield return blinkDelay;
 

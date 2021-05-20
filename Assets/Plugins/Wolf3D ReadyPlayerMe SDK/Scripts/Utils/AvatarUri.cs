@@ -15,8 +15,9 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
         public string AbsoluteUrl { get; private set;}
         public string AbsolutePath {get; private set; }
         public string AbsoluteName { get; private set; }
+        public string MetaDataUrl { get; private set; }
 
-        public AvatarUri(string url, string saveFolder)
+        public AvatarUri(string url)
         {
             Uri uri = new Uri(url);
 
@@ -31,7 +32,9 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
             }
 
             ModelName = AbsolutePath.Split('/').Last();
-            ModelPath = $"{ Application.dataPath }/{ saveFolder }/{ ModelName }";
+            ModelPath = $"{ Application.dataPath }/Resources/Avatars/{ ModelName }";
+
+            MetaDataUrl = AbsoluteUrl.Replace(".glb", ".json");
         }
     }
 }

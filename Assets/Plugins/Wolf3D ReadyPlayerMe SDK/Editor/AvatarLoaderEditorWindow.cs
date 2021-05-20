@@ -20,21 +20,20 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
 
     public class AvatarLoaderEditorWindow : EditorWindow
     {
-        private const string Version        = "v1.2.0";
+        private const string Version        = "v1.3.1";
         private const string BannerPath     = "Assets/Plugins/Wolf3D ReadyPlayerMe SDK/Editor/RPM_EditorImage_Banner.png";
         private const string LovePath       = "Assets/Plugins/Wolf3D ReadyPlayerMe SDK/Editor/RPM_EditorImage_Love.png";
         private const string AnimTargetPath = "/Plugins/Wolf3D ReadyPlayerMe SDK/Resources/AnimationTargets/MaleAnimationTarget.fbx";
 
-        private const string FullbodyUrl = "https://fullbody.readyplayer.me";
-        private const string HalfbodyUrl = "https://vr.readyplayer.me";
-        private const string BlogUrl     = "https://readyplayer.me/blog";
-        private const string DocsUrl     = "https://readyplayer.me/docs";
-        private const string DiscordUrl  = "https://discord.gg/UCvRaM2Hm9";
-        private const string WolfUrl     = "https://wolf3d.io";
+        private const string RpmUrl     = "https://readyplayer.me";
+        private const string BlogUrl    = "https://readyplayer.me/blog";
+        private const string DocsUrl    = "https://readyplayer.me/docs";
+        private const string DiscordUrl = "https://discord.gg/UCvRaM2Hm9";
+        private const string WolfUrl    = "https://wolf3d.io";
 
         private static Texture2D banner = null;
         private static Texture2D love = null;
-        private static AvatarLoader loader = null;
+        private static EditorAvatarLoader loader = null;
 
         private string url = null;
         private bool useModelCaching = false;
@@ -95,7 +94,7 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
         {
             if (banner == null) banner = AssetDatabase.LoadAssetAtPath<Texture2D>(BannerPath);
             if (love == null) love = AssetDatabase.LoadAssetAtPath<Texture2D>(LovePath);
-            if (loader == null) loader = new AvatarLoader();
+            if (loader == null) loader = new EditorAvatarLoader();
 
             // Styles
             if (headerTextStyle == null)
@@ -154,7 +153,7 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
             useModelCaching = EditorGUILayout.Toggle(useModelCaching, GUILayout.Height(20));
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.HelpBox("Changes you make on ReadyPlayerMe are reflected over the same URL. If cacehing is toggled on, avatar model with changes will not be downloaded.", MessageType.Info);
+            EditorGUILayout.HelpBox("Changes you make on ReadyPlayerMe are reflected over the same URL. If caching is toggled on, avatar model with changes will not be downloaded.", MessageType.Info);
 
             EditorGUILayout.EndVertical();
         }
@@ -195,6 +194,8 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
 
             if (useEyeAnimations) avatar.AddComponent<EyeAnimationHandler>();
             if (useVoiceToAnim) avatar.AddComponent<VoiceHandler>();
+
+            Selection.activeObject = avatar;
         }
 
         private void DrawAnimationTargetButton()
@@ -214,13 +215,9 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
             EditorGUILayout.BeginHorizontal("Box");
             GUILayout.FlexibleSpace();
 
-            if (GUILayout.Button("Fullbody Avatar", webButtonStyle))
+            if (GUILayout.Button("ReadyPlayerMe", webButtonStyle))
             {
-                Application.OpenURL(FullbodyUrl);
-            }
-            if (GUILayout.Button("Halfbody Avatar", webButtonStyle))
-            {
-                Application.OpenURL(HalfbodyUrl);
+                Application.OpenURL(RpmUrl);
             }
             if (GUILayout.Button("Blog", webButtonStyle))
             {

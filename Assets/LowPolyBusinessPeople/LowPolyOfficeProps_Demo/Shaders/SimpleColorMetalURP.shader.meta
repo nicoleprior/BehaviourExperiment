@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 19119e561fbb47840a8753c42606b7ef
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _ColorTexture: {fileID: 2800000, guid: c9da85f8df1ab7048a5e0ece3f9c855f, type: 3}
+  - _MetalRGlossA: {fileID: 2800000, guid: fd5032ad2512ded4f9a03b503c43cb84, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
